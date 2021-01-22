@@ -11,6 +11,6 @@ class Tile {
 
         Tile (Tiletype tiletype);
 
-        void placeEntity(Entity &entity);
-        void removeEntity(Entity &entity);
+        void placeEntity(Entity *entity);
+        void removeEntity(Entity *entity);
 };

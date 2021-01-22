@@ -5,17 +5,19 @@
 
 Tile::Tile (Tiletype tiletype) {
     type = tiletype;
-    // height_above_ground = height;
 }   
 
-void Tile::placeEntity(Entity &entity) {
-    entities.push_back(&entity);
+void Tile::placeEntity(Entity *entity) {
+    
+    entities.push_back(entity);
 }
 
-void Tile::removeEntity(Entity &entity) {
+void Tile::removeEntity(Entity *entity) {
     for (u_int16_t i = 0; i < entities.size(); i++) {
-        if (entities[i] == &entity) {
+        if (entities[i] == entity) {
             entities.erase(entities.begin() + i);
         }
     }
+
+    // std::cout << entities.size() << " Size and tyletype: " << (int) type << std::endl;
 }

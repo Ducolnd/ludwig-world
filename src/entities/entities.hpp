@@ -13,7 +13,7 @@ class Player : public Entity {
         std::string name;
 
         Player(std::string player_name, Game &game);
-        void move(uint16_t move_x, uint16_t move_y);
+        void move(int16_t move_x, int16_t move_y);
         void teleport(uint16_t to_x, uint16_t to_y);
 };
 

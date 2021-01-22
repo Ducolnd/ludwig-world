@@ -4,7 +4,6 @@
 // Allows entities to move up the hierarchy tree
 
 #include "map.hpp"
-#include "entities.hpp"
 
 class Game {
     public:
@@ -12,6 +11,5 @@ class Game {
 
         Game();
         void displayMap();
-        void notifyChanged(Entity &entity);
-
+        void notifyChanged(Player *entity);
 };

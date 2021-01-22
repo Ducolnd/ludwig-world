@@ -1,8 +1,11 @@
 #include "entity.hpp"
 #include "../includes.hpp"
 
-Entity::Entity(Game &game) {
+Entity::Entity(Game &game, uint16_t start_x, uint16_t start_y) {
     game_container = &game;
+
+    x = start_x;
+    y = start_y;
 }
 
 // void Entity::move(uint16_t move_x, uint16_t move_y) {
@@ -15,6 +18,6 @@ Entity::Entity(Game &game) {
 //     y = to_y;
 // }
 
-void Entity::changed() {
-    game_container->notifyChanged(*this);
-}
+// void Entity::changed() {
+//     game_container->notifyChanged(*this);
+// }

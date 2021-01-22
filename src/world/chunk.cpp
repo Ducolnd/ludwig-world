@@ -11,9 +11,6 @@ void Chunk::init(int n, int a) {
 }
 
 void Chunk::fillChunk(int itm, int enm) {
-
-    std::cout << "A chunk was created" << std::endl;
-
     int enemy_count = 0;
 
     // Engine for generator numbers between 0 and CHUNKSIZE - 1

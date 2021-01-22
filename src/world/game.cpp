@@ -4,9 +4,9 @@ Game::Game() {
 
 }
 
-void Game::notifyChanged(Entity &entity) {
-    map.get_tile(entity.previous_x, entity.previous_y).removeEntity(entity);
-    map.get_tile(entity.x, entity.y).placeEntity(entity);
+void Game::notifyChanged(Player *player) {
+    map.get_tile(player->previous_x, player->previous_y)->removeEntity(player);
+    map.get_tile(player->x, player->y)->placeEntity(player);
 }
 
 void Game::displayMap() {
@@ -21,4 +21,6 @@ void Game::displayMap() {
         }
         std::cout << std::endl;
     }
+
+    std::cout << std::endl;
 }
