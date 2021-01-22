@@ -21,9 +21,6 @@ void Chunk::fillChunk(int itm, int enm) {
     std::mt19937 engine(rseed());
     std::uniform_int_distribution<int> dist(0,CHUNKSIZE - 1);
 
-    
-    Enemy en("Zombie Bob", Enemies::zombie);
-
 
     for (int x = 0; x <= CHUNKSIZE - 1; x++ ) {
         for (int y = 0; y <= CHUNKSIZE - 1; y++) {
@@ -31,21 +28,5 @@ void Chunk::fillChunk(int itm, int enm) {
             tiles[x].push_back(tile);
         }
     }
-
-    while (enemy_count < enm) {
-        tiles[dist(engine)][dist(engine)].place(en);
-        enemy_count++;
-    }
-}
-
-void Chunk::updateChunk() {
-    for (uint16_t i = 0; i < needs_update.size(); i++) {
-        Entity *entity = needs_update[i];
-
-        Tile tile = tiles[entity->x][entity->y];
-        tile.removeEntity(entity);
-    }
-
-    needs_update.clear();
 }
 

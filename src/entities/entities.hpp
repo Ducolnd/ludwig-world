@@ -12,7 +12,9 @@ class Player : public Entity {
         int health, armour, stamina, hunger;
         std::string name;
 
-        Player(std::string player_name);
+        Player(std::string player_name, Game &game);
+        void move(uint16_t move_x, uint16_t move_y);
+        void teleport(uint16_t to_x, uint16_t to_y);
 };
 
 class Enemy : public Entity {
@@ -21,7 +23,7 @@ class Enemy : public Entity {
         std::string name;
         Enemies type;
 
-        Enemy(std::string enemy_name, Enemies enemytype);
+        Enemy(std::string enemy_name, Enemies enemytype, Game &game);
 };
 
 class Item {

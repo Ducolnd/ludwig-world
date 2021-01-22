@@ -1,6 +1,7 @@
 #pragma once
 
-// #include "entities.hpp"
+#include "entities.hpp"
+#include "chunk.hpp"
 
 class Map {
     public:
