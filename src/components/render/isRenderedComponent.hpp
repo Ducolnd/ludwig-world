@@ -1,0 +1,3 @@
+struct isRenderedComponent {
+    Sprite sprite;
+};

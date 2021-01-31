@@ -1,0 +1,3 @@
+struct hasTransform {
+    float position;
+};

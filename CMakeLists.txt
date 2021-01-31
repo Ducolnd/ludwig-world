@@ -1,10 +1,19 @@
 cmake_minimum_required(VERSION 3.16)
 
+set(CMAKE_C_COMPILER "gcc-10")
+set(CMAKE_CXX_COMPILER "/usr/bin/g++-10")
+
+
 project(ludwig_world)
-include_directories("src/entities/" "src/world/")
-file(GLOB SOURCES "src/entities/*.cpp" "src/world/*.cpp")
 
 set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_BUILD_TYPE Debug) # For debug
+# set(CMAKE_BUILD_TYPE Debug) # For debug
 
-add_executable(ludwig_world src/main.cpp ${SOURCES})
+find_package(SFML 2.5 COMPONENTS graphics window system REQUIRED)
+
+set(SOURCE_FILES src/main.cpp)
+add_executable(ludwig_world ${SOURCE_FILES})
+target_link_libraries(ludwig_world sfml-graphics sfml-window sfml-system)
+
+target_include_directories(ludwig_world PRIVATE "../entt/src")
+
