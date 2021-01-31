@@ -1,3 +1,0 @@
-struct hasTransform {
-    float position;
-};

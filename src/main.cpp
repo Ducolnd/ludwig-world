@@ -1,7 +1,7 @@
-#include "helper/includes.hpp"
-
 #include <entt/entt.hpp>
 
+#include "helper/includes.hpp"
+
 int main() {
-    return 0;
+
 }

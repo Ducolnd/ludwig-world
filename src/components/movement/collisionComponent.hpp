@@ -1,5 +1,7 @@
+#pragma once
+
 #include "helper/hitBox.hpp"
 
-struct hasCollisionComponent {
+struct collisionComponent {
     hitBox hitbox;
 };
