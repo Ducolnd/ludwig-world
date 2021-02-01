@@ -15,6 +15,19 @@ void TransformSystem(entt::registry &registry, float dt) {
 
         location.x += velocity.x * dt;
         location.y += velocity.y * dt;
+
+        if (location.x > 800) {
+            velocity.x *= -1;
+        }
+        else if (location.x < 0) {
+            velocity.x *= -1;
+        }
+        if (location.x > 800) {
+            velocity.y *= -1;
+        }
+        else if (location.x > 0) {
+            velocity.y *= -1;
+        }
         // location.z += velocity.z * dt;
     }
 }
