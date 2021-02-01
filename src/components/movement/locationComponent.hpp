@@ -1,5 +1,7 @@
 #pragma once
 
 struct locationComponent {
-    float x, y, z;
+    float x;
+    float y;
+    float z;
 };

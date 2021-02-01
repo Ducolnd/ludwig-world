@@ -1,5 +1,7 @@
 #pragma once
 
 struct velocityComponent {
-    float x, y, z; // Where z < 0 means falling
+    float x;
+    float y;
+    float z; // Where z < 0 means falling
 }; 

@@ -1,5 +1,7 @@
 #pragma once
 
+#include <SFML/Graphics.hpp>
+
 struct isRenderedComponent {
-    Sprite sprite;
+    std::string sprite;
 };
