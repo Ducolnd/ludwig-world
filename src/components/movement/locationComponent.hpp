@@ -1,7 +1,7 @@
 #pragma once
 
+#include "helper/math.hpp"
+
 struct locationComponent {
-    float x;
-    float y;
-    float z;
+    vec2 vec;
 };

@@ -1,7 +1,7 @@
 #pragma once
 
+#include "helper/math.hpp"
+
 struct velocityComponent {
-    float x;
-    float y;
-    float z; // Where z < 0 means falling
+    vec2 vec;
 }; 

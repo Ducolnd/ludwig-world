@@ -14,19 +14,19 @@ void InputSystem(entt::registry &registry, float dt) {
         auto& location = registry.get<locationComponent>(ent);
 
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A)) {
-            location.x -= 100 * dt;
+            location.vec.x -= 100 * dt;
         }
 
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W)) {
-            location.y -= 100 * dt;
+            location.vec.y -= 100 * dt;
         }
 
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S)) {
-            location.y += 100 * dt;
+            location.vec.y += 100 * dt;
         }
 
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D)) {
-            location.x += 100 * dt;
+            location.vec.x += 100 * dt;
         }
         
     }

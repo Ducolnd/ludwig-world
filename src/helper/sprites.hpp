@@ -4,8 +4,6 @@
 #include <string>
 #include <map>
 
-float randomFloat(float start, float end);
-
 class Sprite {
     public:
         Sprite();
@@ -32,4 +30,4 @@ class TextureManager {
         TextureManager() {}
 };
 
-sf::IntRect getSpriteAt(uint8_t x, uint8_t y);
+sf::IntRect getSpriteAt(uint8_t x, uint8_t y, uint16_t width=16, uint16_t height=16);

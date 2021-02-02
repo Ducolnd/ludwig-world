@@ -2,6 +2,7 @@
 #include <SFML/Graphics.hpp>
 
 #include "helper/includes.hpp"
+#include "helper/math.hpp"
 #include "systems/systemManager.hpp"
 
 int main() {
