@@ -15,10 +15,11 @@ class World {
         Chunk &bufferChunk(uint16_t x, uint16_t y);
 
         std::vector<std::vector<Chunk>> loaded_chunks;
-        
-    private:
+
         uint32_t chunkwidth;
         uint8_t chunkheight;
+
+    private:
         uint16_t max_x, max_y;
         std::random_device rd;  //Will be used to obtain a seed for the random number engine
 };

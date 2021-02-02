@@ -1,6 +1,7 @@
 #pragma once
 
 float randomFloat(float start, float end);
+int randomInt(int start, int end);
 
 class vec2 {
     public:

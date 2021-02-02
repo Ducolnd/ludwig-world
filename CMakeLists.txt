@@ -12,7 +12,7 @@ set(CMAKE_CXX_STANDARD 17)
 find_package(SFML 2.5 COMPONENTS graphics window system REQUIRED)
 
 file(GLOB_RECURSE sources "src/*.cpp")
-add_executable(ludwig_world ${sources})
+add_executable(ludwig_world ${sources} "src/systems/render/renderWorld.cpp")
 
 target_link_libraries(ludwig_world sfml-graphics sfml-window sfml-system)
 

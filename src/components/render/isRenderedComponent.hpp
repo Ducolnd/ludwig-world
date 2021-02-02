@@ -3,5 +3,5 @@
 #include <SFML/Graphics.hpp>
 
 struct isRenderedComponent {
-    std::string sprite;
+    uint16_t sprite;
 };

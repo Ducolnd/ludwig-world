@@ -3,6 +3,14 @@
 #include <math.h>
 #include <random>
 
+int randomInt(float start, float end) {
+    std::random_device rd;
+    std::mt19937 gen(rd()); //Standard mersenne_twister_engine seeded with rd()
+    std::uniform_real_distribution<> dist(start, end);
+
+    return dist(gen);
+}
+
 float randomFloat(float start, float end) {
     std::random_device rd;  //Will be used to obtain a seed for the random number engine
     std::mt19937 gen(rd()); //Standard mersenne_twister_engine seeded with rd()
