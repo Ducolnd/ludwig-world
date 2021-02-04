@@ -7,7 +7,7 @@ set(CMAKE_CXX_COMPILER "/usr/bin/g++-10")
 project(ludwig_world)
 
 set(CMAKE_CXX_STANDARD 17)
-# set(CMAKE_BUILD_TYPE Debug) # For debug
+set(CMAKE_BUILD_TYPE Debug) # For debug
 
 find_package(SFML 2.5 COMPONENTS graphics window system REQUIRED)
 

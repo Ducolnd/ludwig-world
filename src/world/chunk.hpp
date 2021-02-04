@@ -19,7 +19,7 @@
 class Chunk {
     public:
 
-        std::vector<std::vector<std::vector<uint8_t>>> tiles;
+        std::vector<std::vector<std::vector<uint16_t>>> tiles;
 
         uint8_t height;
         uint16_t width, depth;

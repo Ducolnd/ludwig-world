@@ -14,7 +14,7 @@ void RenderSystem(entt::registry &registry, sf::RenderWindow &window, TextureMan
         auto& location = registry.get<locationComponent>(ent);
 
         sf::Sprite s(txm.getRef(rendered.sprite));
-        s.setPosition((int) location.vec.x, (int) location.vec.y);
+        s.setPosition((int) location.vec.x * txm.texture_size, (int) location.vec.y * txm.texture_size);
 
         window.draw(s);
     }

@@ -7,10 +7,10 @@
 
 class World {
     public:
-        World(uint16_t chunks_x, uint16_t chunks_y, uint16_t chunk_size=32, uint8_t worldheight=64, uint8_t buffer_size=3);
+        World(uint16_t chunks_x, uint16_t chunks_y, uint16_t chunk_size=16, uint8_t worldheight=64, uint8_t buffer_size=3);
 
         float randomNum(float start, float end, uint32_t seed);
-        int randomNum(int start, int end, uint32_t seed);
+        uint32_t randomNum(int start, int end);
 
         Chunk &bufferChunk(uint16_t x, uint16_t y);
 

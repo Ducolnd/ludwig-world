@@ -1,4 +1,5 @@
 #include "helper/sprites.hpp"
+#include "helper/textures.hpp"
 #include "helper/math.hpp"
 
 #include "systems/systemManager.hpp"
@@ -22,6 +23,13 @@ void SystemManager::start() {
     sf::RenderWindow window = sf::RenderWindow(sf::VideoMode(800, 800), "Ludwig World", sf::Style::Default);
 
     loadAllTextures(txm); // Load all textures needed
+
+    entt::entity duco = registry.create();
+    registry.emplace<isRenderedComponent>(duco, textures::entities::player);
+    registry.emplace<locationComponent>(duco, vec2(5, 5));
+    registry.emplace<controllerComponent>(duco);
+
+
     update(window);
 }
 
@@ -30,7 +38,11 @@ void SystemManager::update(sf::RenderWindow& window) {
     sf::Clock clock;   
 
     World world(5, 5);
-    world.bufferChunk(33425, 235);
+    for (int i = 0; i < 3; i++) {
+        for (int x = 0; x < 3; x++) {
+            world.bufferChunk(i, x);
+        }
+    }
     
     while (window.isOpen()) {
         sf::Time dt;
@@ -50,11 +62,11 @@ void SystemManager::update(sf::RenderWindow& window) {
         
         // Update systems
         // SeekEntitySystem(registry, dt.asSeconds());
-        // InputSystem(registry, dt.asSeconds());
+        InputSystem(registry, dt.asSeconds());
         // TransformSystem(registry, dt.asSeconds());
 
         // Render systems
-        // RenderSystem(registry, window, txm);
+        RenderSystem(registry, window, txm);
         
         
 

@@ -2,6 +2,8 @@
 
 #include <SFML/Graphics.hpp>
 
+#include "helper/textures.hpp"
+
 struct isRenderedComponent {
-    uint16_t sprite;
+    textures::entities sprite;
 };
