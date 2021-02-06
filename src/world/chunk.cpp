@@ -1,21 +1,16 @@
 #include "chunk.hpp"
 #include "helper/math.hpp"
 #include "helper/textures.hpp"
+#include "helper/includes.hpp"
+#include "helper/typedef.hpp"
 
-#include <algorithm>
-#include <iostream>
-#include <random>
-#include <vector>
-
-Chunk::Chunk(uint32_t seed, uint16_t w, uint16_t d, uint8_t h) {
-    chunk_seed = seed;
-
+Chunk::Chunk(uint16_t w, uint16_t d, uint8_t h) {
     width = w;
     depth = d;
     height = h;
 }
 
-void Chunk::fill() {
+void Chunk::fill(tdvf heightmap) {
     tiles.resize(height);
 
     for (uint8_t i = 0; i < height; i++) {
@@ -26,12 +21,23 @@ void Chunk::fill() {
         }
     }
     
-    for (uint16_t i = 0; i < width; i++) {
-        for (uint16_t b = 0; b < depth; b++) {
-            float chance = randomFloat(0, 1);
-            if (chance > 0.85) {
-                tiles[25][i][b] = textures::blocks::grass;
-            } 
+    for (uint16_t x = 0; x < width; x++) {
+        for (uint16_t y = 0; y < depth; y++) {
+            if (heightmap[(int) x][(int) y] > -5) {
+                tiles[heightmap[(int) x][(int) y] + 20][x][y] = textures::blocks::grass;
+            }
+        }
+    }
+}
+
+void Chunk::fillEmtpy() {
+    tiles.resize(height);
+
+    for (uint8_t i = 0; i < height; i++) {
+        tiles[i].resize(width);
+
+        for (uint16_t b = 0; b < width; b++) {
+            tiles[i][b].resize(depth, 0);
         }
     }
 }

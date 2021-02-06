@@ -3,6 +3,8 @@
 #include <stdint.h>
 #include <vector>
 
+#include "helper/typedef.hpp"
+
 // enum Biome {
 //     rainForest,
 //     thickForet,
@@ -24,8 +26,9 @@ class Chunk {
         uint8_t height;
         uint16_t width, depth;
 
-        Chunk(uint32_t seed, uint16_t  w, uint16_t d, uint8_t h);
-        void fill();
+        Chunk(uint16_t  w, uint16_t d, uint8_t h);
+        void fill(tdvf heightmap);
+        void fillEmtpy();
 
         uint64_t chunk_seed;
 };

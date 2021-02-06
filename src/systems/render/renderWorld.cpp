@@ -19,7 +19,7 @@ void renderWorld(World &world, sf::RenderWindow &window, TextureManager &txm) {
 
     for (uint16_t x = 0; x < x_chunks * world.chunkwidth; x++) {
         for (uint16_t y = 0; y < y_chunks * world.chunkwidth; y++) {
-            sf::Sprite tile(txm.getRef(world.loaded_chunks[x / world.chunkwidth][y / world.chunkwidth].tiles[25][x % world.chunkwidth][y % world.chunkwidth]));
+            sf::Sprite tile(txm.getRef(world.loaded_chunks[x / world.chunkwidth][y / world.chunkwidth].tiles[20][x % world.chunkwidth][y % world.chunkwidth]));
 
             tile.setPosition(
                 txm.texture_size * x, 
@@ -27,27 +27,5 @@ void renderWorld(World &world, sf::RenderWindow &window, TextureManager &txm) {
             );
             window.draw(tile);
         }
-    }
-
-    // for (uint8_t xc = 0; xc < x_chunks; xc++) {
-    //     for (uint8_t yc = 0; yc < y_chunks; yc++) {
-
-    //         std::cout << "x y" << std::to_string(xc) << " " << std::to_string(yc) << std::endl;
-
-    //         for (uint8_t x = 0; x < world.chunkwidth; x++) {
-    //             for (uint8_t y = 0; y < world.chunkwidth; y++) {
-                    
-    //                 sf::Sprite tile(txm.getRef(world.loaded_chunks[xc][yc].tiles[25][x][y]));
-
-    //                 tile.setPosition(
-    //                     window.getSize().x / 2 - txm.texture_size * (world.chunkwidth / 2) - (1 - xc) * txm.texture_size * world.chunkwidth + txm.texture_size * x, 
-    //                     window.getSize().y / 2 - txm.texture_size * (world.chunkwidth / 2) - (1 - yc) * txm.texture_size * world.chunkwidth + txm.texture_size * y
-    //                 );
-
-    //                 window.draw(tile);
-    //             }
-    //         }
-    //     }
-    // }
-    
+    }   
 }

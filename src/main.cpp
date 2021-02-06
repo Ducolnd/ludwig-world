@@ -4,8 +4,10 @@
 #include "world/world.hpp"
 
 #include "helper/includes.hpp"
+#include "helper/typedef.hpp"
 #include "helper/math.hpp"
 #include "systems/systemManager.hpp"
+#include "../FastNoiseLite/FastNoiseLite.h"
 
 template <typename T>
 void print(T what) {
@@ -15,6 +17,6 @@ void print(T what) {
 int main() {
     SystemManager sys;
     sys.start();
-    
+
     return 0;
 }
