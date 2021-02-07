@@ -19,6 +19,15 @@ float randomFloat(float start, float end) {
     return dis(gen);
 }
 
+RandGenerator::RandGenerator(uint32_t seed) {
+    gen = std::mt19937(seed);
+}
+
+float RandGenerator::randFloat(float start, float end) {
+    std::uniform_real_distribution<float> dis(start, end);
+    return dis(gen);
+}
+
 vec2::vec2(float _x, float _y) {
     x = _x;
     y = _y;
@@ -29,4 +38,10 @@ void vec2::rotate(float radians) {
 
     y = round((sin(radians) * x + cos(radians) * y) * 10000) / 10000;
     x = round(nx * 10000) / 10000;
+}
+
+vec3::vec3(float _x, float _y, float _z) {
+    x = _x;
+    y = _y;
+    z = _z;
 }

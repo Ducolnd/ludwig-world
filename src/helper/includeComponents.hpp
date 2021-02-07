@@ -1,5 +1,7 @@
 #pragma once
 
+#include "components/general/cameraComponent.hpp"
+
 #include "components/combat/hasCombatantComponent.hpp"
 #include "components/combat/livingComponent.hpp"
 

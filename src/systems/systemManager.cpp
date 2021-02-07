@@ -8,41 +8,35 @@
 #include "systems/movement/inputSystem.hpp"
 #include "systems/pvp/seekEntitySystem.hpp"
 #include "systems/render/renderWorld.hpp"
+#include "systems/movement/cameraMovementSystem.hpp"
 
-
-#include "components/movement/locationComponent.hpp"
-#include "components/movement/velocityComponent.hpp"
-#include "components/player/controllerComponent.hpp"
-#include "components/combat/hasCombatantComponent.hpp"
-#include "components/ai/seekEntityComponent.hpp"
+#include "helper/includeComponents.hpp"
 
 #include <math.h>
 #include <iostream>
 
 void SystemManager::start() {
-    sf::RenderWindow window = sf::RenderWindow(sf::VideoMode(800, 800), "Ludwig World", sf::Style::Default);
+    sf::RenderWindow window = sf::RenderWindow(sf::VideoMode(1200, 1200), "Ludwig World", sf::Style::Default);
 
     loadAllTextures(txm); // Load all textures needed
 
-    entt::entity duco = registry.create();
-    registry.emplace<isRenderedComponent>(duco, textures::entities::player);
-    registry.emplace<locationComponent>(duco, vec2(5, 5));
-    registry.emplace<controllerComponent>(duco);
-
-
+entt::entity entity = registry.create();
+    registry.emplace<locationComponent>(entity, vec2(0,0));
+    registry.emplace<controllerComponent>(entity);
+    registry.emplace<isRenderedComponent>(entity, textures::entities::player);
     update(window);
 }
 
 void SystemManager::update(sf::RenderWindow& window) {
 
+    entt::entity camera = registry.create();
+    registry.emplace<controllerComponent>(camera);
+    registry.emplace<cameraComponent>(camera, vec3(0, 0, 20));
+
     sf::Clock clock;   
 
     World world(5, 5);
-    for (int i = 0; i < 3; i++) {
-        for (int x = 0; x < 3; x++) {
-            world.bufferChunk(i, x);
-        }
-    }
+    world.fillBuffer(0,0);
     
     while (window.isOpen()) {
         sf::Time dt;
@@ -55,9 +49,10 @@ void SystemManager::update(sf::RenderWindow& window) {
                 window.close();
         }
 
-        window.clear(sf::Color(0, 0, 0));
+        window.clear(sf::Color(0, 0, 20));
 
-        renderWorld(world, window, txm); 
+        CameraMovementSystem(registry, world, dt.asSeconds());
+        renderWorld(world, window, txm, registry, camera); 
 
         
         // Update systems

@@ -4,6 +4,7 @@
 #include <vector>
 
 #include "helper/typedef.hpp"
+#include "helper/math.hpp"
 
 // enum Biome {
 //     rainForest,
@@ -26,9 +27,14 @@ class Chunk {
         uint8_t height;
         uint16_t width, depth;
 
-        Chunk(uint16_t  w, uint16_t d, uint8_t h);
+        Chunk(uint16_t  w, uint16_t d, uint8_t h, uint32_t chunkseed);
         void fill(tdvf heightmap);
         void fillEmtpy();
 
-        uint64_t chunk_seed;
+        uint32_t chunk_seed;
+
+        RandGenerator generator;
+
+    // private:
+        
 };
