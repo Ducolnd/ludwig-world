@@ -5,6 +5,7 @@
 #include <vector>
 #include <cmath>
 #include <random>
+#include <list>
 
 #include "helper/math.hpp"
 #include "helper/sprites.hpp"

@@ -1,6 +1,7 @@
 #include "helper/sprites.hpp"
 #include "helper/textures.hpp"
 #include "helper/math.hpp"
+#include "helper/includeComponents.hpp"
 
 #include "systems/systemManager.hpp"
 #include "systems/render/renderSystem.hpp"
@@ -10,33 +11,37 @@
 #include "systems/render/renderWorld.hpp"
 #include "systems/movement/cameraMovementSystem.hpp"
 
-#include "helper/includeComponents.hpp"
+#include "world/generation/map.hpp"
 
 #include <math.h>
 #include <iostream>
 
 void SystemManager::start() {
-    sf::RenderWindow window = sf::RenderWindow(sf::VideoMode(1200, 1200), "Ludwig World", sf::Style::Default);
+    sf::RenderWindow window = sf::RenderWindow(sf::VideoMode(800, 800), "Ludwig World", sf::Style::Default);
 
     loadAllTextures(txm); // Load all textures needed
 
-entt::entity entity = registry.create();
+    entt::entity entity = registry.create();
     registry.emplace<locationComponent>(entity, vec2(0,0));
     registry.emplace<controllerComponent>(entity);
     registry.emplace<isRenderedComponent>(entity, textures::entities::player);
+
     update(window);
 }
 
 void SystemManager::update(sf::RenderWindow& window) {
 
-    entt::entity camera = registry.create();
-    registry.emplace<controllerComponent>(camera);
-    registry.emplace<cameraComponent>(camera, vec3(0, 0, 20));
+    // entt::entity camera = registry.create();
+    // registry.emplace<controllerComponent>(camera);
+    // registry.emplace<cameraComponent>(camera, vec3(0, 0, 20));
+
+    Map map(800, 800);
+    map.initTiles();
 
     sf::Clock clock;   
 
-    World world(5, 5);
-    world.fillBuffer(0,0);
+    // World world(5, 5);
+    // world.fillBuffer(0,0);
     
     while (window.isOpen()) {
         sf::Time dt;
@@ -49,19 +54,21 @@ void SystemManager::update(sf::RenderWindow& window) {
                 window.close();
         }
 
-        window.clear(sf::Color(0, 0, 20));
+        window.clear(sf::Color(255, 255, 255));
 
-        CameraMovementSystem(registry, world, dt.asSeconds());
-        renderWorld(world, window, txm, registry, camera); 
+        RenderGameMap(window, map, 1);
+
+        // CameraMovementSystem(registry, world, dt.asSeconds());
+        // renderWorld(world, window, txm, registry, camera); 
 
         
-        // Update systems
-        // SeekEntitySystem(registry, dt.asSeconds());
-        InputSystem(registry, dt.asSeconds());
-        // TransformSystem(registry, dt.asSeconds());
+        // // Update systems
+        // // SeekEntitySystem(registry, dt.asSeconds());
+        // InputSystem(registry, dt.asSeconds());
+        // // TransformSystem(registry, dt.asSeconds());
 
-        // Render systems
-        RenderSystem(registry, window, txm);
+        // // Render systems
+        // RenderSystem(registry, window, txm);
         
         
 
