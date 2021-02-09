@@ -11,10 +11,19 @@ Perlin::Perlin(uint64_t seed, float frequency, uint16_t octaves, float lacunarit
     noise.SetFractalGain(gain);
 }
 
+void Perlin::setRange(float low, float high) {
+    rangeLow = low;
+    rangeHigh = high;
+}
+
 float Perlin::get(float x, float y) {
-    return (noise.GetNoise(x, y) + 1) / 2;
+    return map(noise.GetNoise(x, y));
 }
 
 float Perlin::get(float x, float y, float z) {
-    return (noise.GetNoise(x, y, z) + 1) / 2;
+    return map(noise.GetNoise(x, y, z));
+}
+
+float Perlin::map(float value) {
+    return (value - -1) * (rangeHigh - rangeLow) / (1 - -1) + rangeLow;
 }

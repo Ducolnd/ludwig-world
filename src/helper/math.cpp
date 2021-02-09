@@ -3,7 +3,7 @@
 #include <math.h>
 #include <random>
 
-int randomInt(float start, float end) {
+int randomInt(int start, int end) {
     std::random_device rd;
     std::mt19937 gen(rd()); //Standard mersenne_twister_engine seeded with rd()
     std::uniform_real_distribution<> dist(start, end);

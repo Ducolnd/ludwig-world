@@ -3,26 +3,26 @@
 #include <stdint.h>
 #include <vector>
 
-// A structure for holding some information on that specific location
-// Not a chunk or a real game square 
-struct Tile {
-    float height; // Z height
-    float temperature; // Lower is colder
-    float wetness;
+#include "region.hpp"
 
-    Tile *left, *top, *right, *bottom = nullptr;
-};
 
-// The Map is what stores all biome, weather, season, temerature data
-// Chunks will be constructed from this data
+// The Map is what stores all biome, weather, season, temerature data and regions
 class Map {
     public:
         Map(uint32_t map_width, uint32_t map_height);
+
+        void setSeed(uint64_t _seed);
+
+        void generate();
         void initHeightmap();
         void initHeatmap();
+        void initWetmap();
 
-        uint32_t width; // Size of map
+        uint32_t width; // Size of map in regions
         uint32_t height;
 
-        std::vector<std::vector<Tile>> tiles;
+        std::vector<std::vector<Region>> regions;
+
+    private:
+        uint64_t seed = 69; // Default seed
 };

@@ -40,8 +40,7 @@ void CameraMovementSystem(entt::registry &registry, World &world, float dt) {
         else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Down)) {
             camera.cameraLocation.z -= 4 * dt;
         }
-
-        world.centerAround((int) camera.cameraLocation.x / 16, (int) camera.cameraLocation.y / 16);
+        
         // std::cout << "Camera x y position " << (int) camera.cameraLocation.x /16<< " " << (int) camera.cameraLocation.y / 16<< std::endl;
         
     }

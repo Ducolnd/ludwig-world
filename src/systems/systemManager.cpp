@@ -15,9 +15,10 @@
 
 #include <math.h>
 #include <iostream>
+#include <chrono>
 
 void SystemManager::start() {
-    sf::RenderWindow window = sf::RenderWindow(sf::VideoMode(800, 800), "Ludwig World", sf::Style::Default);
+    sf::RenderWindow window = sf::RenderWindow(sf::VideoMode(800, 900), "Ludwig World", sf::Style::Default);
 
     loadAllTextures(txm); // Load all textures needed
 
@@ -35,8 +36,7 @@ void SystemManager::update(sf::RenderWindow& window) {
     // registry.emplace<controllerComponent>(camera);
     // registry.emplace<cameraComponent>(camera, vec3(0, 0, 20));
 
-    Map map(800, 800);
-    map.initTiles();
+    World world(600, 700);
 
     sf::Clock clock;   
 
@@ -56,7 +56,11 @@ void SystemManager::update(sf::RenderWindow& window) {
 
         window.clear(sf::Color(255, 255, 255));
 
-        RenderGameMap(window, map, 1);
+        auto t1 = std::chrono::high_resolution_clock::now();
+        
+        RenderGameMap(window, world, 1);
+        
+        
 
         // CameraMovementSystem(registry, world, dt.asSeconds());
         // renderWorld(world, window, txm, registry, camera); 

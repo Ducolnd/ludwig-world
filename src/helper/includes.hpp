@@ -10,3 +10,5 @@
 #include "helper/math.hpp"
 #include "helper/sprites.hpp"
 #include "helper/textures.hpp"
+
+#include "setup.hpp"

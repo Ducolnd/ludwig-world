@@ -21,23 +21,28 @@ void RenderSystem(entt::registry &registry, sf::RenderWindow &window, TextureMan
     }
 }
 
-void RenderGameMap(sf::RenderWindow &window, Map &world, uint32_t pixel_size) {
-    float DeepWater = 0.2f;
-    float ShallowWater = 0.4f;  
-    float Sand = 0.5f;
+void RenderGameMap(sf::RenderWindow &window, World &world, uint32_t pixel_size) {
+    float DeepWater = 0.345f;
+    float ShallowWater = 0.5f;  
+    float Sand = 0.6f;
     float Grass = 0.7f;
     float Forest = 0.8f;
-    float Rock = 0.9f;
+    float Rock = 0.85f;
     float Snow = 1;
 
-    for (uint16_t x = 0; x < world.width ; x++) {
-        for (uint16_t y = 0; y < world.height ; y++) {
+    float ColdestValue = 0.10f;
+    float ColderValue = 0.18f;
+    float ColdValue = 0.4f;
+    float WarmValue = 0.6f;
+    float WarmerValue = 0.8f;
+    float WarmestValue = 1.0f;
+
+    for (uint16_t x = 0; x < world.map.width ; x++) {
+        for (uint16_t y = 0; y < world.map.height ; y++) {
 
             sf::RectangleShape sq(sf::Vector2f(pixel_size, pixel_size));
 
-            // print(world.tiles[x][y].height * 255);
-
-            float h = world.tiles[x][y].height;
+            float h = world.map.regions[x][y].height;
 
             if (h < DeepWater) {
                 sq.setFillColor(sf::Color(0, 0, 125));
@@ -54,6 +59,20 @@ void RenderGameMap(sf::RenderWindow &window, Map &world, uint32_t pixel_size) {
             } else if (h < Snow) {
                 sq.setFillColor(sf::Color(255, 255, 255));
             } 
+
+            //  if (h < ColdestValue) {
+            //     sq.setFillColor(sf::Color(255, 255, 255));
+            // } else if (h < ColderValue) {
+            //     sq.setFillColor(sf::Color(204, 255, 255));
+            // } else if (h < ColdValue) {
+            //     sq.setFillColor(sf::Color(153, 255, 51));
+            // } else if (h < WarmValue) {
+            //     sq.setFillColor(sf::Color(255, 255, 0));
+            // } else if (h < WarmerValue) {
+            //     sq.setFillColor(sf::Color(255, 153, 0));
+            // } else if (h < WarmestValue) {
+            //     sq.setFillColor(sf::Color(255, 0, 0));
+            // }
 
             sq.setPosition(x * pixel_size, y * pixel_size);
             window.draw(sq);

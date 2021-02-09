@@ -1,0 +1,3 @@
+#define CHUNK_SIZE 16
+#define REGION_SIZE 128
+#define WORLD_HEIGHT 128

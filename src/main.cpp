@@ -7,7 +7,8 @@
 #include "helper/typedef.hpp"
 #include "helper/math.hpp"
 #include "systems/systemManager.hpp"
-#include "../FastNoiseLite/FastNoiseLite.h"
+#include "world/world.hpp"
+
 
 template <typename T>
 void print(T what) {
@@ -15,6 +16,8 @@ void print(T what) {
 }
 
 int main() {
+    World game(400, 400);
+
     SystemManager sys;
     sys.start();
 
