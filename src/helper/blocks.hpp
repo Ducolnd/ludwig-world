@@ -2,7 +2,7 @@
 
 #include "stdint.h"
 
-namespace textures {
+namespace blocks {
     enum blocks : uint16_t {
         air = 0,
         stone = 1,

@@ -16,7 +16,7 @@ void print(T what) {
 }
 
 int main() {
-    World game(400, 400);
+    // World game(400, 400);
 
     SystemManager sys;
     sys.start();

@@ -2,13 +2,12 @@
 #include <entt/entt.hpp>
 #include <iostream>
 
-#include "helper/sprites.hpp"
 #include "world/world.hpp"
 #include "renderWorld.hpp"
 #include "components/general/cameraComponent.hpp"
 #include "helper/includes.hpp"
 
-void renderWorld(World &world, sf::RenderWindow &window, TextureManager &txm, entt::registry &registry, entt::entity &cam) {
+void renderWorld(World &world, sf::RenderWindow &window, entt::registry &registry, entt::entity &cam) {
 
     auto& loc = registry.get<cameraComponent>(cam);
 
@@ -17,14 +16,14 @@ void renderWorld(World &world, sf::RenderWindow &window, TextureManager &txm, en
 
             for (uint16_t x = 0; x < CHUNK_SIZE; x++) {
                 for (uint16_t y = 0; y < CHUNK_SIZE; y++) { // Loops tiles in chunk
-                    sf::Sprite tile(txm.getRef(
-                        world.loaded_chunks[cx][cy].tiles[(int) loc.cameraLocation.z][x][y]));
+                    // sf::Sprite tile(txm.getRef(
+                    //     world.loaded_chunks[cx][cy].tiles[(int) loc.cameraLocation.z][x][y]));
 
-                    tile.setPosition(
-                        txm.texture_size * (cx * 16 + x), 
-                        txm.texture_size * (cy * 16 + y)
-                    );
-                    window.draw(tile);
+                    // tile.setPosition(
+                    //     txm.texture_size * (cx * 16 + x), 
+                    //     txm.texture_size * (cy * 16 + y)
+                    // );
+                    // window.draw(tile);
                 }
             }  
         }

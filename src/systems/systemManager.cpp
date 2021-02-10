@@ -1,7 +1,7 @@
-#include "helper/sprites.hpp"
-#include "helper/textures.hpp"
+#include "helper/blocks.hpp"
 #include "helper/math.hpp"
 #include "helper/includeComponents.hpp"
+#include "helper/font.hpp"
 
 #include "systems/systemManager.hpp"
 #include "systems/render/renderSystem.hpp"
@@ -20,29 +20,35 @@
 void SystemManager::start() {
     sf::RenderWindow window = sf::RenderWindow(sf::VideoMode(800, 900), "Ludwig World", sf::Style::Default);
 
-    loadAllTextures(txm); // Load all textures needed
-
-    entt::entity entity = registry.create();
-    registry.emplace<locationComponent>(entity, vec2(0,0));
-    registry.emplace<controllerComponent>(entity);
-    registry.emplace<isRenderedComponent>(entity, textures::entities::player);
-
     update(window);
 }
 
 void SystemManager::update(sf::RenderWindow& window) {
 
-    // entt::entity camera = registry.create();
-    // registry.emplace<controllerComponent>(camera);
-    // registry.emplace<cameraComponent>(camera, vec3(0, 0, 20));
+    entt::entity camera = registry.create();
+    registry.emplace<controllerComponent>(camera);
+    registry.emplace<cameraComponent>(camera, vec3(0, 0, 20));
 
-    World world(600, 700);
+    // World world(600, 700);
+    // world.bufferAt(0,0);
 
     sf::Clock clock;   
 
-    // World world(5, 5);
-    // world.fillBuffer(0,0);
-    
+    std::vector<std::vector<Font>> level = {
+        {Font(3, 0, sf::Color(255, 0, 0)), Font(1, 1, sf::Color(0, 255, 0))}, 
+        {Font(3, 4, sf::Color(255, 255, 0)), Font(11, 13, sf::Color(185, 255, 42))}
+    };
+
+    TileMap map;
+    if(!map.load("/home/duco/development/cpp/gamedev/ludwig-world/tileset/tileset.png", sf::Vector2u(32, 32), 2, 2)) {
+        std::cout << "error occured" << std::endl;
+        return;
+    }
+
+    map.changeMapSize(2, 2);
+
+    map.updateMap(level, 2.2);
+
     while (window.isOpen()) {
         sf::Time dt;
         dt = clock.restart();
@@ -54,12 +60,12 @@ void SystemManager::update(sf::RenderWindow& window) {
                 window.close();
         }
 
-        window.clear(sf::Color(255, 255, 255));
+        window.clear(sf::Color(0,0,0));
+        
+        window.draw(map);
 
-        auto t1 = std::chrono::high_resolution_clock::now();
         
-        RenderGameMap(window, world, 1);
-        
+        // RenderGameMap(window, world, 1);
         
 
         // CameraMovementSystem(registry, world, dt.asSeconds());

@@ -4,8 +4,14 @@
 Region::Region() {
 }
 
-Chunk Region::generateChunk(int x, int y) {
-    return Chunk(CHUNK_SIZE, CHUNK_SIZE, WORLD_HEIGHT, 3466);
+Chunk Region::generateChunk(int chunk_x, int chunk_y) {
+    Chunk chunk(CHUNK_SIZE, CHUNK_SIZE, WORLD_HEIGHT, 3466);
+
+    std::vector<std::vector<float>> heights(CHUNK_SIZE, std::vector<float>(CHUNK_SIZE, 0.5));
+
+    chunk.fill(heights);
+
+    return chunk;
 }
 
 void Region::generate() {
@@ -15,7 +21,12 @@ void Region::generate() {
 }
 
 void Region::initDetailedHeightmap() {
-    Perlin heightMap;
+    Perlin heightMap(randomInt(0, 23453634));
+
+    detailedHeightMap.resize(REGION_SIZE);
+    for (int i = 0; i < REGION_SIZE; i++) {
+        detailedHeightMap[i].resize(REGION_SIZE);
+    }
 
     for (uint32_t x = 0; x < REGION_SIZE; x++) {
         for (uint32_t y = 0; y < REGION_SIZE; y++) {
@@ -25,7 +36,7 @@ void Region::initDetailedHeightmap() {
 }
 
 void Region::initDetailedWetmap() {
-    Perlin detailedMap();
+    Perlin wetMap();
 }
 
 void Region::initDetailedTemperature() {

@@ -8,7 +8,6 @@
 #include <list>
 
 #include "helper/math.hpp"
-#include "helper/sprites.hpp"
-#include "helper/textures.hpp"
+#include "helper/blocks.hpp"
 
 #include "setup.hpp"

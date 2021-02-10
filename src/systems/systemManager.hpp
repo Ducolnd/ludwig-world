@@ -3,8 +3,6 @@
 #include <entt/entt.hpp>
 #include <SFML/Graphics.hpp>
 
-#include "../helper/sprites.hpp"
-
 // Central class from which all systems are updated
 
 class SystemManager {
@@ -15,5 +13,4 @@ class SystemManager {
     private:
         // EnTT 
         entt::registry registry;
-        TextureManager txm;
 };

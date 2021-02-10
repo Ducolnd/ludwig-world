@@ -19,7 +19,7 @@ class Chunk {
 
         Chunk() : generator(45747) {} 
         Chunk(uint16_t  w, uint16_t d, uint8_t h, uint32_t chunkseed);
-        void fill(tdvf heightmap);
+        void fill(std::vector<std::vector<float>> heightmap);
         void fillEmtpy();
 
         uint32_t chunk_seed;

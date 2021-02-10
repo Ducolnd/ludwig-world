@@ -2,8 +2,8 @@
 
 #include <SFML/Graphics.hpp>
 
-#include "helper/textures.hpp"
+#include "helper/font.hpp"
 
 struct isRenderedComponent {
-    textures::entities sprite;
+    Font sprite;
 };

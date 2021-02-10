@@ -16,23 +16,37 @@ World::World(uint32_t _world_width, uint32_t _world_height, uint64_t _seed, uint
     map.generate();
 
     loaded_chunks.resize(buffer_size);
-    for (auto i : loaded_chunks) i.resize(buffer_size);
+    for (int i = 0; i < buffer_size; i++) {
+        loaded_chunks[i].resize(buffer_size);
+    }
 }
 
-void World::bufferAt(int x, int y) {
+void World::bufferAt(int chunk_x, int chunk_y) {
+    getRegion(chunk_y, chunk_y).generate();
     for (int i = 0; i < buffer_size; i++) {
         for (int b = 0; b < buffer_size; b++) {
-            loaded_chunks[i][b] = getChunk(x + i, y + b);
+            loaded_chunks[i][b] = getChunk(chunk_x + i, chunk_y + b);
         }
     }
 }
 
-Chunk World::getChunk(int x, int y) {
-    return getRegion(x, y).generateChunk(x % REGION_SIZE, y % REGION_SIZE);
+Chunk World::getChunk(int chunk_x, int chunk_y) {
+    return getRegion(chunk_x, chunk_y).generateChunk(
+        chunk_x % REGION_SIZE, 
+        chunk_y % REGION_SIZE
+    );
 }
 
-Region &World::getRegion(int x, int y) {
+Region &World::getRegion(int chunk_x, int chunk_y) {
+    if (!chunk_x > 0) { // Clamp value not lower than 1
+        chunk_x = 1;
+    }
+
+    if (!chunk_y > 0) { // Clamp value not lower than 1
+        chunk_y = 1;
+    }
+
     return map.regions
-        [std::floor(REGION_SIZE / (std::floor(x / CHUNK_SIZE)))]
-        [std::floor(REGION_SIZE / (std::floor(y / CHUNK_SIZE)))];
+        [std::floor(REGION_SIZE / chunk_x)]
+        [std::floor(REGION_SIZE / chunk_y)];
 }
