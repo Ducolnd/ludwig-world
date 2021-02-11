@@ -9,5 +9,6 @@
 
 #include "helper/math.hpp"
 #include "helper/blocks.hpp"
+#include "helper/font.hpp"
 
 #include "setup.hpp"

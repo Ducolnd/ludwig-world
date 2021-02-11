@@ -8,7 +8,7 @@
 #include "systems/movement/transformSystem.hpp"
 #include "systems/movement/inputSystem.hpp"
 #include "systems/pvp/seekEntitySystem.hpp"
-#include "systems/render/renderWorld.hpp"
+#include "systems/render/updateLevel.hpp"
 #include "systems/movement/cameraMovementSystem.hpp"
 
 #include "world/generation/map.hpp"
@@ -56,14 +56,12 @@ void SystemManager::update(sf::RenderWindow& window) {
         window.clear(sf::Color(0,0,0));
         
         // RenderGameMap(window, world, 1);
-        renderWorld(world, renderer, registry, camera); 
+        UpdateLevelWorld(world, renderer, registry, camera); 
         renderer.updateMap(1);
 
         CameraMovementSystem(registry, world, dt.asSeconds());
         
-        
-        window.draw(renderer);
-        
+    
         // // Update systems
         // // SeekEntitySystem(registry, dt.asSeconds());
         // InputSystem(registry, dt.asSeconds());
@@ -73,7 +71,7 @@ void SystemManager::update(sf::RenderWindow& window) {
         // RenderSystem(registry, window, txm);
         
         
-
+        window.draw(renderer);
         window.display();
 
     }

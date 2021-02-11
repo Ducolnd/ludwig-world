@@ -1,15 +1,8 @@
 #pragma once
 
-#include <entt/entt.hpp>
 #include <SFML/Graphics.hpp>
 
-#include "components/render/isRenderedComponent.hpp"
-#include "world/world.hpp"
-#include "world/generation/map.hpp"
 #include "helper/font.hpp"
-
-void RenderSystem(entt::registry &registry, sf::RenderWindow &window);
-void RenderGameMap(sf::RenderWindow &window, World &world, uint32_t pixel_size = 2);
 
 class TileMap : public sf::Drawable, public sf::Transformable {
     public:
