@@ -16,6 +16,7 @@ class World {
 
         std::vector<std::vector<Chunk>> loaded_chunks;
         uint32_t world_width, world_height;
+        uint8_t buffer_size;
         Map map;
 
         void bufferAt(int x, int y);
@@ -23,7 +24,6 @@ class World {
 
     private:
         Perlin perlin;
-        uint8_t buffer_size;
         uint64_t seed;
 
         Chunk getChunk(int x, int y);

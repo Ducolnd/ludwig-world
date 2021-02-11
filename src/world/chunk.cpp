@@ -30,17 +30,17 @@ void Chunk::fill(std::vector<std::vector<float>> heightmap) {
 
             uint8_t z = 0;
             while (z < stone_height) {
-                tiles[z][x][y] = blocks::blocks::stone;
+                tiles[z][x][y] = ((0x00 | 255) << 8) | 178;
                 z++;
             }
 
             z = dirt_height;
             while (z < grass_height) {
-                tiles[z][x][y] = blocks::blocks::dirt;
+                tiles[z][x][y] = ((0x00 | 200) << 8) | 1;
                 z++;
             }
 
-            tiles[grass_height][x][y] = blocks::blocks::grass;
+            tiles[grass_height][x][y] = ((0x00 | 150) << 8) | 15;
         }
     }
 }

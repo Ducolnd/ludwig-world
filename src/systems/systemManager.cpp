@@ -29,25 +29,18 @@ void SystemManager::update(sf::RenderWindow& window) {
     registry.emplace<controllerComponent>(camera);
     registry.emplace<cameraComponent>(camera, vec3(0, 0, 20));
 
-    // World world(600, 700);
-    // world.bufferAt(0,0);
+    World world(800, 800);
+    world.bufferAt(0,0);
+
+    
 
     sf::Clock clock;   
 
-    std::vector<std::vector<Font>> level = {
-        {Font(3, 0, sf::Color(255, 0, 0)), Font(1, 1, sf::Color(0, 255, 0))}, 
-        {Font(3, 4, sf::Color(255, 255, 0)), Font(11, 13, sf::Color(185, 255, 42))}
-    };
-
-    TileMap map;
-    if(!map.load("/home/duco/development/cpp/gamedev/ludwig-world/tileset/tileset.png", sf::Vector2u(32, 32), 2, 2)) {
+    TileMap renderer;
+    if(!renderer.load("/home/duco/development/cpp/gamedev/ludwig-world/tileset/tileset.png", sf::Vector2u(32, 32), 48, 48)) {
         std::cout << "error occured" << std::endl;
         return;
     }
-
-    map.changeMapSize(2, 2);
-
-    map.updateMap(level, 2.2);
 
     while (window.isOpen()) {
         sf::Time dt;
@@ -62,15 +55,14 @@ void SystemManager::update(sf::RenderWindow& window) {
 
         window.clear(sf::Color(0,0,0));
         
-        window.draw(map);
-
-        
         // RenderGameMap(window, world, 1);
+        renderWorld(world, renderer, registry, camera); 
+        renderer.updateMap(1);
+
+        CameraMovementSystem(registry, world, dt.asSeconds());
         
-
-        // CameraMovementSystem(registry, world, dt.asSeconds());
-        // renderWorld(world, window, txm, registry, camera); 
-
+        
+        window.draw(renderer);
         
         // // Update systems
         // // SeekEntitySystem(registry, dt.asSeconds());

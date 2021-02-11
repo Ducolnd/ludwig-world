@@ -1,6 +1,11 @@
 #include "font.hpp"
 #include "includes.hpp"
 
+Font::Font(uint8_t xy, uint8_t r, uint8_t g, uint8_t b) {
+    coord = sf::Vector2u(xy - 16 * static_cast<int>(xy / 16), static_cast<int>(xy / 16));
+    color = sf::Color(r, g, b);
+}
+
 Font::Font(int x, int y, uint8_t r, uint8_t g, uint8_t b) {
     coord = sf::Vector2u(x, y);
     color = sf::Color(r, g, b);

@@ -89,6 +89,9 @@ bool TileMap::load(const std::string& tileset, sf::Vector2u tilesize, uint16_t _
     m_vertices.setPrimitiveType(sf::Quads);
     m_vertices.resize(_width * _height * 4);
 
+    level.resize(_width);
+    for (int i = 0; i < _width; i++) {level[i].resize(_height, Font(0, 0, 0, 0));}
+
     width = _width;
     height = _height;
     tileSize = tilesize;
@@ -96,11 +99,13 @@ bool TileMap::load(const std::string& tileset, sf::Vector2u tilesize, uint16_t _
     return true;
 }
 
-void TileMap::updateMap(std::vector<std::vector<Font>> tiles, float scale) {
+void TileMap::updateMap(float scale) {
     for (unsigned int i = 0; i < width; ++i) {
         for (unsigned int j = 0; j < height; ++j) {
 
-            Font tile = tiles[i][j];
+            Font tile = level[i][j];
+
+            // std::cout << tile.coord.x + tile.coord.y * 16 << " ";
 
             // get a pointer to the current tile's quad
             sf::Vertex* quad = &m_vertices[(i + j * width) * 4];
