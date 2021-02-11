@@ -38,11 +38,11 @@ Chunk World::getChunk(int chunk_x, int chunk_y) {
 }
 
 Region &World::getRegion(int chunk_x, int chunk_y) {
-    if (!chunk_x > 0) { // Clamp value not lower than 1
+    if (!(chunk_x) > 0) { // Clamp value not lower than 1
         chunk_x = 1;
     }
 
-    if (!chunk_y > 0) { // Clamp value not lower than 1
+    if (!(chunk_y) > 0) { // Clamp value not lower than 1
         chunk_y = 1;
     }
 

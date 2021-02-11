@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 3.16)
 
 set(CMAKE_C_COMPILER "gcc-10")
 set(CMAKE_CXX_COMPILER "/usr/bin/g++-10")
+set(CMAKE_CXX_FLAGS "-Wall -Wextra")
 
 
 project(ludwig_world)
