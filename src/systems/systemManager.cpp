@@ -29,15 +29,23 @@ void SystemManager::update(sf::RenderWindow& window) {
     registry.emplace<controllerComponent>(camera);
     registry.emplace<cameraComponent>(camera, vec3(0, 0, 20));
 
+
+    // Setup
     World world(800, 800);
     world.bufferAt(0,0);
 
-    
+    sf::Clock clock;  
 
-    sf::Clock clock;   
+    sf::Font font;
+    if (!font.loadFromFile("../assets/textfont.ttf")) {print("Error occured while loading font.");}
+
+    sf::Text fpsText;
+    fpsText.setFont(font);
+    fpsText.setCharacterSize(24);
+    fpsText.setFillColor(sf::Color::Red);
 
     TileMap renderer;
-    if(!renderer.load("/home/duco/development/cpp/gamedev/ludwig-world/tileset/tileset.png", sf::Vector2u(32, 32), 48, 48)) {
+    if(!renderer.load("/home/duco/development/cpp/gamedev/ludwig-world/assets/tileset.png", sf::Vector2u(32, 32), 48, 48)) {
         std::cout << "error occured" << std::endl;
         return;
     }
@@ -46,6 +54,7 @@ void SystemManager::update(sf::RenderWindow& window) {
         sf::Time dt;
         dt = clock.restart();
 
+        fpsText.setString(std::to_string(1.0f / dt.asSeconds()));
 
         sf::Event Event{};
         while (window.pollEvent(Event)) {
@@ -70,8 +79,8 @@ void SystemManager::update(sf::RenderWindow& window) {
         // // Render systems
         // RenderSystem(registry, window, txm);
         
-        
         window.draw(renderer);
+        window.draw(fpsText);
         window.display();
 
     }
