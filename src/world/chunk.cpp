@@ -29,18 +29,20 @@ void Chunk::fill(std::vector<std::vector<float>> heightmap) {
             uint8_t stone_height = dirt_height;
 
             uint8_t z = 0;
+
+            // ((0x00 | COLOR) << 8) | SPRITE
             while (z < stone_height) {
-                tiles[z][x][y] = ((0x00 | 255) << 8) | 178;
+                tiles[z][x][y] = ((0x00 | 9) << 8) | 178;
                 z++;
             }
 
             z = dirt_height;
             while (z < grass_height) {
-                tiles[z][x][y] = ((0x00 | 200) << 8) | 1;
+                tiles[z][x][y] = ((0x00 | 11) << 8) | 178;
                 z++;
             }
 
-            tiles[grass_height][x][y] = ((0x00 | 150) << 8) | 15;
+            tiles[grass_height][x][y] = ((0x00 | 3) << 8) | 15;
         }
     }
 }

@@ -2,13 +2,13 @@ cmake_minimum_required(VERSION 3.16)
 
 set(CMAKE_C_COMPILER "gcc-10")
 set(CMAKE_CXX_COMPILER "/usr/bin/g++-10")
-set(CMAKE_CXX_FLAGS "-Wall -Wextra")
+set(CMAKE_CXX_FLAGS "-Wall")
 
 
 project(ludwig_world)
 
 set(CMAKE_CXX_STANDARD 17)
-# set(CMAKE_BUILD_TYPE Debug) # For debug
+set(CMAKE_BUILD_TYPE Debug) # For debug
 
 find_package(SFML 2.5 COMPONENTS graphics window system REQUIRED)
 

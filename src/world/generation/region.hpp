@@ -7,7 +7,7 @@
 #include <vector>
 
 // A structure for holding some information
-// Contains REGION_WIDTH chunks
+// Contains REGION_SIZE chunks
 class Region {
     public:
         float height; // Z height
@@ -29,5 +29,6 @@ class Region {
         
     private:
         Perlin perlin;
+        bool generated = false; // Don't generate twice
 
 };

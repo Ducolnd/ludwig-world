@@ -6,6 +6,7 @@
 #include "helper/includeComponents.hpp"
 #include "helper/includes.hpp"
 #include "helper/font.hpp"
+#include "helper/color.hpp"
 
 void UpdateLevelEntites(entt::registry &registry, TileMap &renderer) {
     auto view = registry.view<isRenderedComponent, locationComponent>();
@@ -93,9 +94,7 @@ void UpdateLevelWorld(World &world,  TileMap &renderer, entt::registry &registry
                     renderer.level[cx * 16 + x][cy * 16 + y] = Font(
                         c.tiles[loc.z][x][y] & 0xFF, // Which sprite
 
-                        c.tiles[loc.z][x][y] >> 8, // R
-                        c.tiles[loc.z][x][y] >> 8, // G
-                        c.tiles[loc.z][x][y] >> 8  // B
+                        color[c.tiles[loc.z][x][y] >> 8] // Color
                     );
                 }
             }  

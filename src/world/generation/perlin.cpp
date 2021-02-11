@@ -1,7 +1,7 @@
 #include "perlin.hpp"
 #include "../FastNoiseLite/FastNoiseLite.h"
 
-Perlin::Perlin(uint64_t seed, float frequency, uint16_t octaves, float lacunarity, float gain) {
+Perlin::Perlin(int seed, float frequency, uint16_t octaves, float lacunarity, float gain) {
     noise.SetSeed(seed);
     noise.SetFrequency(frequency);
     noise.SetNoiseType(FastNoiseLite::NoiseType::NoiseType_OpenSimplex2);

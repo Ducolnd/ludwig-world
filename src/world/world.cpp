@@ -23,6 +23,7 @@ World::World(uint32_t _world_width, uint32_t _world_height, uint64_t _seed, uint
 
 void World::bufferAt(int chunk_x, int chunk_y) {
     getRegion(chunk_y, chunk_y).generate();
+
     for (int i = 0; i < buffer_size; i++) {
         for (int b = 0; b < buffer_size; b++) {
             loaded_chunks[i][b] = getChunk(chunk_x + i, chunk_y + b);
@@ -38,11 +39,11 @@ Chunk World::getChunk(int chunk_x, int chunk_y) {
 }
 
 Region &World::getRegion(int chunk_x, int chunk_y) {
-    if (!(chunk_x) > 0) { // Clamp value not lower than 1
+    if ((!chunk_x) > 0) { // Clamp value not lower than 1
         chunk_x = 1;
     }
 
-    if (!(chunk_y) > 0) { // Clamp value not lower than 1
+    if ((!chunk_y) > 0) { // Clamp value not lower than 1
         chunk_y = 1;
     }
 

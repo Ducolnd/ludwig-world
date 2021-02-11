@@ -17,6 +17,8 @@
 #include <iostream>
 #include <chrono>
 
+using namespace std::chrono;
+
 void SystemManager::start() {
     sf::RenderWindow window = sf::RenderWindow(sf::VideoMode(800, 900), "Ludwig World", sf::Style::Default);
 
@@ -31,7 +33,7 @@ void SystemManager::update(sf::RenderWindow& window) {
 
 
     // Setup
-    World world(800, 800);
+    World world(129, 129);
     world.bufferAt(0,0);
 
     sf::Clock clock;  
