@@ -3,5 +3,5 @@
 #include "helper/math.hpp"
 
 struct locationComponent {
-    vec2 vec;
+    vec3 vec;
 };

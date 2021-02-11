@@ -28,9 +28,16 @@ float RandGenerator::randFloat(float start, float end) {
     return dis(gen);
 }
 
+// VECTOR 2
+
 vec2::vec2(float _x, float _y) {
+
     x = _x;
     y = _y;
+}
+
+vec2 vec2::operator - (vec2 const &other) {
+    return vec2(x - other.x, y - other.y);
 }
 
 void vec2::rotate(float radians) {
@@ -40,8 +47,14 @@ void vec2::rotate(float radians) {
     x = round(nx * 10000) / 10000;
 }
 
+// VECTOR 3
+
 vec3::vec3(float _x, float _y, float _z) {
     x = _x;
     y = _y;
     z = _z;
+}
+
+vec3::operator vec2() const {
+    return vec2(x, y);
 }

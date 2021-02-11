@@ -44,4 +44,6 @@ class vec3 {
         vec3 operator + (vec3 const &other);
         vec3 operator - (vec3 const &other);
         vec3 operator * (vec3 const &other);
+
+        operator vec2() const; // Overload type cast to vec2 
 };

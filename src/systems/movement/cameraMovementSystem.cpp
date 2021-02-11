@@ -2,6 +2,8 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 
+#include "systems/render/levelManager.hpp"
+
 #include "cameraMovementSystem.hpp"
 
 #include "components/general/cameraComponent.hpp"
@@ -9,7 +11,7 @@
 #include "components/render/isRenderedComponent.hpp"
 
 
-void CameraMovementSystem(entt::registry &registry, World &world, float dt) {
+void CameraMovementSystem(entt::registry &registry, World &world, float dt, sf::RenderWindow &window, sf::Text text, LevelManager &lvm) {
     auto view = registry.view<controllerComponent, cameraComponent>();
 
     for (auto& ent : view) {
@@ -39,8 +41,11 @@ void CameraMovementSystem(entt::registry &registry, World &world, float dt) {
 
         else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Down)) {
             camera.cameraLocation.z -= 4 * dt;
-        }        
-        // std::cout << "Camera x y position " << (int) camera.cameraLocation.x /16<< " " << (int) camera.cameraLocation.y / 16<< std::endl;
-        
+        }       
+
+        lvm.currentHeight = static_cast<int>(camera.cameraLocation.z); 
+
+        text.setString(std::to_string(camera.cameraLocation.z));
+        window.draw(text);      
     }
 }

@@ -8,14 +8,14 @@
 #include "helper/font.hpp"
 #include "helper/color.hpp"
 
-void UpdateLevelEntites(entt::registry &registry, TileMap &renderer) {
+void UpdateLevelEntites(entt::registry &registry, LevelManager &manager) {
     auto view = registry.view<isRenderedComponent, locationComponent>();
 
     for (auto& ent : view) {
         auto& rendered = registry.get<isRenderedComponent>(ent);
-        auto& location = registry.get<locationComponent>(ent);
+        auto& location = registry.get<locationComponent>(ent).vec;
 
-        // renderer.level[] = rendered.sprite;
+        manager.drawAt(location, rendered.sprite);
     }
 }
 

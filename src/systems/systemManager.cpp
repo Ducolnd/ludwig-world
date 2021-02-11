@@ -1,7 +1,5 @@
-#include "helper/blocks.hpp"
-#include "helper/math.hpp"
+#include "helper/includes.hpp"
 #include "helper/includeComponents.hpp"
-#include "helper/font.hpp"
 
 #include "systems/systemManager.hpp"
 #include "systems/render/renderSystem.hpp"
@@ -12,10 +10,6 @@
 #include "systems/movement/cameraMovementSystem.hpp"
 
 #include "world/generation/map.hpp"
-
-#include <math.h>
-#include <iostream>
-#include <chrono>
 
 using namespace std::chrono;
 
@@ -30,6 +24,11 @@ void SystemManager::update(sf::RenderWindow& window) {
     entt::entity camera = registry.create();
     registry.emplace<controllerComponent>(camera);
     registry.emplace<cameraComponent>(camera, vec3(0, 0, 20));
+
+    entt::entity player = registry.create();
+    registry.emplace<controllerComponent>(player);
+    registry.emplace<locationComponent>(player, vec3(0, 0, 29));
+    registry.emplace<isRenderedComponent>(player, Font(0, 4, 66, 200, 245));
 
 
     // Setup
@@ -46,11 +45,17 @@ void SystemManager::update(sf::RenderWindow& window) {
     fpsText.setCharacterSize(24);
     fpsText.setFillColor(sf::Color::Red);
 
+    sf::Text zText;
+    zText.setFont(font);
+    zText.setCharacterSize(24);
+    zText.setFillColor(sf::Color::Red);
+    zText.setPosition(0, 40);
+
     TileMap renderer;
-    if(!renderer.load("/home/duco/development/cpp/gamedev/ludwig-world/assets/tileset.png", sf::Vector2u(32, 32), 48, 48)) {
-        std::cout << "error occured" << std::endl;
-        return;
-    }
+    if(!renderer.load("/home/duco/development/cpp/gamedev/ludwig-world/assets/tileset.png", sf::Vector2u(32, 32), 48, 48)) {std::cout << "error occured" << std::endl;return;}
+
+    LevelManager levelManager(&renderer, vec2(48, 48));
+
 
     while (window.isOpen()) {
         sf::Time dt;
@@ -66,21 +71,14 @@ void SystemManager::update(sf::RenderWindow& window) {
 
         window.clear(sf::Color(0,0,0));
         
-        // RenderGameMap(window, world, 1);
+        CameraMovementSystem(registry, world, dt.asSeconds(), window, zText, levelManager);
+        InputSystem(registry, dt.asSeconds());
+        
         UpdateLevelWorld(world, renderer, registry, camera); 
+        UpdateLevelEntites(registry, levelManager);
+
         renderer.updateMap(1);
 
-        CameraMovementSystem(registry, world, dt.asSeconds());
-        
-    
-        // // Update systems
-        // // SeekEntitySystem(registry, dt.asSeconds());
-        // InputSystem(registry, dt.asSeconds());
-        // // TransformSystem(registry, dt.asSeconds());
-
-        // // Render systems
-        // RenderSystem(registry, window, txm);
-        
         window.draw(renderer);
         window.draw(fpsText);
         window.display();
