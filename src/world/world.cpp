@@ -22,11 +22,16 @@ World::World(uint32_t _world_width, uint32_t _world_height, uint64_t _seed, uint
 }
 
 void World::bufferAt(int chunk_x, int chunk_y) {
-    getRegion(chunk_y, chunk_y).generate();
+    if (chunk_x != loaded_chunk_x | chunk_y != loaded_chunk_y) {
+        loaded_chunk_x = chunk_x;
+        loaded_chunk_y = chunk_y;
 
-    for (int i = 0; i < buffer_size; i++) {
-        for (int b = 0; b < buffer_size; b++) {
-            loaded_chunks[i][b] = getChunk(chunk_x + i, chunk_y + b);
+        getRegion(chunk_y, chunk_y).generate();
+
+        for (int i = 0; i < buffer_size; i++) {
+            for (int b = 0; b < buffer_size; b++) {
+                loaded_chunks[i][b] = getChunk(chunk_x + i, chunk_y + b);
+            }
         }
     }
 }

@@ -80,7 +80,7 @@ void UpdateLevelGamemap(TileMap &renderer, World &world, uint32_t pixel_size) {
     }
 }
 
-void UpdateLevelWorld(World &world,  TileMap &renderer, entt::registry &registry, entt::entity &cam) {
+void UpdateLevelWorld(World &world,  LevelManager &manager, entt::registry &registry, entt::entity &cam) {
 
     auto& loc = registry.get<cameraComponent>(cam).cameraLocation;
 
@@ -90,11 +90,17 @@ void UpdateLevelWorld(World &world,  TileMap &renderer, entt::registry &registry
             for (uint16_t x = 0; x < CHUNK_SIZE; x++) {
                 for (uint16_t y = 0; y < CHUNK_SIZE; y++) { // Loops tiles in chunk
                     Chunk &c = world.loaded_chunks[cx][cy];
-
-                    renderer.level[cx * 16 + x][cy * 16 + y] = Font(
-                        c.tiles[loc.z][x][y] & 0xFF, // Which sprite
-
-                        color[c.tiles[loc.z][x][y] >> 8] // Color
+                    
+                    manager.drawAt(
+                        vec3(
+                            (world.loaded_chunk_x) * 16 + cx * 16 + x, 
+                            (world.loaded_chunk_y) * 16 + cy * 16 + y, 
+                            static_cast<int>(loc.z)
+                        ), 
+                        Font(
+                            c.tiles[static_cast<int>(loc.z)][x][y] & 0xFF, // Which sprite    
+                            color[c.tiles[static_cast<int>(loc.z)][x][y] >> 8] // Color
+                        )
                     );
                 }
             }  

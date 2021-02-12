@@ -14,7 +14,7 @@
 using namespace std::chrono;
 
 void SystemManager::start() {
-    sf::RenderWindow window = sf::RenderWindow(sf::VideoMode(800, 900), "Ludwig World", sf::Style::Default);
+    sf::RenderWindow window = sf::RenderWindow(sf::VideoMode(1080, 1080), "Ludwig World", sf::Style::Default);
 
     update(window);
 }
@@ -32,7 +32,7 @@ void SystemManager::update(sf::RenderWindow& window) {
 
 
     // Setup
-    World world(129, 129);
+    World world(129, 129, 235, 3);
     world.bufferAt(0,0);
 
     sf::Clock clock;  
@@ -49,12 +49,12 @@ void SystemManager::update(sf::RenderWindow& window) {
     zText.setFont(font);
     zText.setCharacterSize(24);
     zText.setFillColor(sf::Color::Red);
-    zText.setPosition(0, 40);
+    zText.setPosition(0, 30);
 
     TileMap renderer;
-    if(!renderer.load("/home/duco/development/cpp/gamedev/ludwig-world/assets/tileset.png", sf::Vector2u(32, 32), 48, 48)) {std::cout << "error occured" << std::endl;return;}
+    if(!renderer.load("/home/duco/development/cpp/gamedev/ludwig-world/assets/tileset.png", sf::Vector2u(32, 32), 64, 64)) {std::cout << "error occured" << std::endl;return;}
 
-    LevelManager levelManager(&renderer, vec2(48, 48));
+    LevelManager levelManager(&renderer, vec2(64, 64));
 
 
     while (window.isOpen()) {
@@ -71,13 +71,14 @@ void SystemManager::update(sf::RenderWindow& window) {
 
         window.clear(sf::Color(0,0,0));
         
-        CameraMovementSystem(registry, world, dt.asSeconds(), window, zText, levelManager);
+        CameraMovementSystem(registry, dt.asSeconds());
+        CameraLocationUpdateSystem(registry, world, zText, levelManager, window);
         InputSystem(registry, dt.asSeconds());
         
-        UpdateLevelWorld(world, renderer, registry, camera); 
+        UpdateLevelWorld(world, levelManager, registry, camera); 
         UpdateLevelEntites(registry, levelManager);
 
-        renderer.updateMap(1);
+        renderer.updateMap(0.45);
 
         window.draw(renderer);
         window.draw(fpsText);

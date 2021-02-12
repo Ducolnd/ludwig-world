@@ -9,7 +9,7 @@
 // level = vector of what is currently being displayed
 
 // Simply draws the currently buffered chunks
-void UpdateLevelWorld(World &world,  TileMap &renderer, entt::registry &registry, entt::entity &cam);
+void UpdateLevelWorld(World &world, LevelManager &manager, entt::registry &registry, entt::entity &cam);
 
 // Update entities on level
 void UpdateLevelEntites(entt::registry &registry, LevelManager &manager);

@@ -17,7 +17,7 @@ bool TileMap::load(const std::string& tileset, sf::Vector2u tilesize, uint16_t _
     m_vertices.resize(_width * _height * 4);
 
     level.resize(_width);
-    for (int i = 0; i < _width; i++) {level[i].resize(_height, Font(0, 0, 0, 0));}
+    for (int i = 0; i < _width; i++) {level[i].resize(_height, Font(3, 0, 0, 0));} // Init with emtpy font
 
     width = _width;
     height = _height;

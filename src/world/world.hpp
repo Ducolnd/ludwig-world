@@ -19,6 +19,8 @@ class World {
         uint8_t buffer_size;
         Map map;
 
+        int loaded_chunk_x, loaded_chunk_y = 0;
+
         void bufferAt(int x, int y);
 
 
