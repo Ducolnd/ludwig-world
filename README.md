@@ -13,9 +13,9 @@ Ludwig World will be an open world roguelike game. Procedually generated, infini
  5. Make using `cmake ..` then `make`
  6. You can now run the game by typing `./ludwig_world`
 
-<b>Installing from source Windows</b>
+<b>Installing from source Windows</b><br>
 Needs testing
-<b>Installing from source Mac</b>
+<b>Installing from source Mac</b><br>
 Needs testing
 
 ## Contributing

@@ -8,9 +8,7 @@ Region::Region(uint64_t _seed) {
 Chunk Region::generateChunk(int chunk_x, int chunk_y) {
     Chunk chunk(CHUNK_SIZE, CHUNK_SIZE, WORLD_HEIGHT, 3466);
 
-    print("x y ", chunk_x, " ", chunk_y);
-
-    std::vector<std::vector<float>> heights(CHUNK_SIZE, std::vector<float>(CHUNK_SIZE, height + 2));
+    std::vector<std::vector<float>> heights(CHUNK_SIZE, std::vector<float>(CHUNK_SIZE, height ));
 
     chunk.fill(heights);
 

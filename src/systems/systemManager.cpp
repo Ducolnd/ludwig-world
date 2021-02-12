@@ -23,11 +23,11 @@ void SystemManager::update(sf::RenderWindow& window) {
 
     entt::entity camera = registry.create();
     registry.emplace<controllerComponent>(camera);
-    registry.emplace<cameraComponent>(camera, vec3(0, 0, 29));
+    registry.emplace<cameraComponent>(camera, vec3(0, 0, 60));
 
     entt::entity player = registry.create();
     registry.emplace<controllerComponent>(player);
-    registry.emplace<locationComponent>(player, vec3(0, 0, 29));
+    registry.emplace<locationComponent>(player, vec3(0, 0, 60));
     registry.emplace<isRenderedComponent>(player, Font(0, 4, 66, 200, 245));
 
 

@@ -6,7 +6,7 @@
 #include "helper/includeComponents.hpp"
 #include "helper/includes.hpp"
 #include "helper/font.hpp"
-#include "helper/color.hpp"
+#include "world/block/blockList.hpp"
 
 void UpdateLevelEntites(entt::registry &registry, LevelManager &manager) {
     auto view = registry.view<isRenderedComponent, locationComponent>();
@@ -97,10 +97,7 @@ void UpdateLevelWorld(World &world,  LevelManager &manager, entt::registry &regi
                             (world.loaded_chunk_y) * 16 + cy * 16 + y, 
                             static_cast<int>(loc.z)
                         ), 
-                        Font(
-                            c.tiles[static_cast<int>(loc.z)][x][y] & 0xFF, // Which sprite    
-                            color[c.tiles[static_cast<int>(loc.z)][x][y] >> 8] // Color
-                        )
+                        getBlock(static_cast<BlockId>(c.tiles[static_cast<int>(loc.z)][x][y])).sprite
                     );
                 }
             }  
