@@ -18,4 +18,6 @@ const std::vector<sf::Color> color {
     sf::Color(128, 128, 128),
     sf::Color(128, 128, 0), // 10
     sf::Color(139, 69, 19), // Saddle brown
+    sf::Color(0, 153, 0), // Grass green
+    sf::Color(0, 102, 0), // Dark green
 };

@@ -3,6 +3,7 @@
 #include "helper/blocks.hpp"
 #include "helper/includes.hpp"
 #include "helper/typedef.hpp"
+#include "generation/helper.hpp"
 
 Chunk::Chunk(uint16_t w, uint16_t d, uint8_t h, uint32_t chunkseed) : generator(d) {
     width = w; 
@@ -42,7 +43,7 @@ void Chunk::fill(std::vector<std::vector<float>> heightmap) {
                 z++;
             }
 
-            tiles[grass_height][x][y] = ((0x00 | 3) << 8) | 15;
+            tiles[grass_height][x][y] = getGrass();
         }
     }
 }

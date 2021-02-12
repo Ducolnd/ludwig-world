@@ -52,9 +52,9 @@ void SystemManager::update(sf::RenderWindow& window) {
     zText.setPosition(0, 30);
 
     TileMap renderer;
-    if(!renderer.load("/home/duco/development/cpp/gamedev/ludwig-world/assets/tileset.png", sf::Vector2u(32, 32), 64, 64)) {std::cout << "error occured" << std::endl;return;}
+    if(!renderer.load("/home/duco/development/cpp/gamedev/ludwig-world/assets/tileset.png", sf::Vector2u(32, 32), 48, 48)) {std::cout << "error occured" << std::endl;return;}
 
-    LevelManager levelManager(&renderer, vec2(64, 64));
+    LevelManager levelManager(&renderer, vec2(48, 48));
 
 
     while (window.isOpen()) {
@@ -78,7 +78,7 @@ void SystemManager::update(sf::RenderWindow& window) {
         UpdateLevelWorld(world, levelManager, registry, camera); 
         UpdateLevelEntites(registry, levelManager);
 
-        renderer.updateMap(0.45);
+        renderer.updateMap(0.75);
 
         window.draw(renderer);
         window.draw(fpsText);
