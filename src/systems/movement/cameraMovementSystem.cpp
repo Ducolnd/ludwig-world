@@ -2,8 +2,9 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 
-#include "systems/render/levelManager.hpp"
+#include "helper/math.hpp"
 
+#include "systems/render/levelManager.hpp"
 #include "cameraMovementSystem.hpp"
 
 #include "components/general/cameraComponent.hpp"
@@ -15,33 +16,36 @@ void CameraMovementSystem(entt::registry &registry, float dt) {
     auto view = registry.view<controllerComponent, cameraComponent>();
 
     for (auto& ent : view) {
-        auto& camera = registry.get<cameraComponent>(ent);
+        auto& camera = registry.get<cameraComponent>(ent).cameraLocation;
 
         // Horizontal movement
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left)) {
-            camera.cameraLocation.x -= 5 * dt;
+            camera.x -= 5 * dt;
         }
 
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Up)) {
-            camera.cameraLocation.y -= 5 * dt;
+            camera.y -= 5 * dt;
         }
 
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Down)) {
-            camera.cameraLocation.y += 5 * dt;
+            camera.y += 5 * dt;
         }
 
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right)) {
-            camera.cameraLocation.x += 5 * dt;
+            camera.x += 5 * dt;
         }
 
         // Vertical movement
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::PageUp)) {
-            camera.cameraLocation.z += 4 * dt;
+            camera.z += 4 * dt;
         }
 
         else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::PageDown)) {
-            camera.cameraLocation.z -= 4 * dt;
+            camera.z -= 4 * dt;
         }
+
+        camera.x = clip(camera.x, 0.0f, 10000.0f);
+        camera.y = clip(camera.y, 0.0f, 10000.0f);
     }
 }
 

@@ -9,7 +9,7 @@
 // The Map is what stores all biome, weather, season, temerature data and regions
 class Map {
     public:
-        Map(uint32_t map_width, uint32_t map_height);
+        Map(uint32_t map_width, uint32_t map_height, uint64_t _seed);
 
         void setSeed(uint64_t _seed);
 

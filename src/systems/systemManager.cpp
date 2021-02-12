@@ -23,7 +23,7 @@ void SystemManager::update(sf::RenderWindow& window) {
 
     entt::entity camera = registry.create();
     registry.emplace<controllerComponent>(camera);
-    registry.emplace<cameraComponent>(camera, vec3(0, 0, 20));
+    registry.emplace<cameraComponent>(camera, vec3(0, 0, 29));
 
     entt::entity player = registry.create();
     registry.emplace<controllerComponent>(player);
@@ -32,7 +32,7 @@ void SystemManager::update(sf::RenderWindow& window) {
 
 
     // Setup
-    World world(129, 129, 235, 3);
+    World world(129, 129, 235, 4);
     world.bufferAt(0,0);
 
     sf::Clock clock;  

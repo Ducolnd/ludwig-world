@@ -1,15 +1,16 @@
 #include "helper/includes.hpp"
 #include "region.hpp"
 
-Region::Region() {
+Region::Region(uint64_t _seed) {
+    seed = _seed;
 }
 
 Chunk Region::generateChunk(int chunk_x, int chunk_y) {
     Chunk chunk(CHUNK_SIZE, CHUNK_SIZE, WORLD_HEIGHT, 3466);
 
-    Perlin heightMap(randomInt(0, 23453634));
+    print("x y ", chunk_x, " ", chunk_y);
 
-    std::vector<std::vector<float>> heights(CHUNK_SIZE, std::vector<float>(CHUNK_SIZE, height + heightMap.get(chunk_x, chunk_y) / 2));
+    std::vector<std::vector<float>> heights(CHUNK_SIZE, std::vector<float>(CHUNK_SIZE, height + 2));
 
     chunk.fill(heights);
 
@@ -27,7 +28,7 @@ void Region::generate() {
 }
 
 void Region::initDetailedHeightmap() {
-    Perlin heightMap(randomInt(0, 23453634));
+    Perlin heightMap(randomInt(0, seed));
 
     detailedHeightMap.resize(REGION_SIZE);
     for (int i = 0; i < REGION_SIZE; i++) {

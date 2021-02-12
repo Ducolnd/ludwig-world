@@ -5,14 +5,13 @@
 #include "helper/typedef.hpp"
 
 
-World::World(uint32_t _world_width, uint32_t _world_height, uint64_t _seed, uint8_t _buffer_size) : map(_world_width, _world_height) {
+World::World(uint32_t _world_width, uint32_t _world_height, uint64_t _seed, uint8_t _buffer_size) : map(_world_width, _world_height, _seed) {
     world_height = _world_height;
     world_width = _world_width;
 
     buffer_size = _buffer_size;
-    seed = (!_seed) ? randomInt(0, 3463367) : _seed; // If not set, we set it random
+    seed = _seed; // If not set, we set it random
 
-    map.setSeed(seed);
     map.generate();
 
     loaded_chunks.resize(buffer_size);
@@ -22,16 +21,28 @@ World::World(uint32_t _world_width, uint32_t _world_height, uint64_t _seed, uint
 }
 
 void World::bufferAt(int chunk_x, int chunk_y) {
-    if (chunk_x != loaded_chunk_x | chunk_y != loaded_chunk_y) {
+    if (chunk_x != loaded_chunk_x | chunk_y != loaded_chunk_y) { // If it is not already loaded
         loaded_chunk_x = chunk_x;
         loaded_chunk_y = chunk_y;
-
+        
         getRegion(chunk_y, chunk_y).generate();
 
-        for (int i = 0; i < buffer_size; i++) {
-            for (int b = 0; b < buffer_size; b++) {
-                loaded_chunks[i][b] = getChunk(chunk_x + i, chunk_y + b);
-            }
+        if (chunk_x >= 1 && chunk_y >= 1) {
+            fillBuffer(chunk_x - 1, chunk_y - 1);
+        } else if (chunk_x == 0 && chunk_y >=1) {
+            fillBuffer(0, chunk_y -1);
+        } else if (chunk_x >= 1 && chunk_y == 0) {
+            fillBuffer(chunk_x - 1, 0);
+        } else {
+            fillBuffer(0, 0);
+        }
+    }
+}
+
+void World::fillBuffer(int startx, int starty) {
+    for (int i = 0; i < buffer_size; i++) {
+        for (int b = 0; b < buffer_size; b++) {
+            loaded_chunks[i][b] = getChunk(startx + i, starty + b);
         }
     }
 }

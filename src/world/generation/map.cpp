@@ -3,13 +3,13 @@
 #include "map.hpp"
 #include "region.hpp"
 
-Map::Map(uint32_t map_width, uint32_t map_heigth) {
+Map::Map(uint32_t map_width, uint32_t map_heigth, uint64_t _seed) {
     width = map_width;
     height = map_heigth;
 
     regions.resize(width);
     for (int i = 0; i < width; i++) {
-        regions[i].resize(height, Region());
+        regions[i].resize(height, Region(seed + i));
     }
 }
 

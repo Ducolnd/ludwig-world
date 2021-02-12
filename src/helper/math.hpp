@@ -6,6 +6,9 @@
 float randomFloat(float start, float end);
 int randomInt(int start, int end);
 
+template <typename T>
+T clip(const T& n, const T& lower, const T& upper) {return std::max(lower, std::min(n, upper));}
+
 template<class... Args>
 void print(Args... args)
 {

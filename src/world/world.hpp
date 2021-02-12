@@ -12,7 +12,7 @@
 // Handles chunk management and updates for chunks according to Map
 class World {
     public:
-        World(uint32_t _world_width, uint32_t _world_height, uint64_t _seed=0, uint8_t _buffer_size=3);
+        World(uint32_t _world_width, uint32_t _world_height, uint64_t _seed=69, uint8_t _buffer_size=3);
 
         std::vector<std::vector<Chunk>> loaded_chunks;
         uint32_t world_width, world_height;
@@ -27,6 +27,8 @@ class World {
     private:
         Perlin perlin;
         uint64_t seed;
+
+        void fillBuffer(int startx, int starty);
 
         Chunk getChunk(int x, int y);
         Region &getRegion(int x, int y);

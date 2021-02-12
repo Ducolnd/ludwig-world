@@ -21,7 +21,7 @@ class Region {
 
         Chunk generateChunk(int x, int y);
 
-        Region();
+        Region(uint64_t _seed);
 
         std::vector<std::vector<float>> detailedHeightMap;
         std::vector<std::vector<float>> detailedWetmap;
@@ -30,5 +30,6 @@ class Region {
     private:
         Perlin perlin;
         bool generated = false; // Don't generate twice
+        uint64_t seed;
 
 };
