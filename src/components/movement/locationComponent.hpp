@@ -1,6 +1,6 @@
 #pragma once
 
-#include "helper/math.hpp"
+#include "helper/math/math.hpp"
 
 struct locationComponent {
     vec3 vec;

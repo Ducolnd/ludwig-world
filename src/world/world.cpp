@@ -42,12 +42,18 @@ void World::bufferAt(int chunk_x, int chunk_y) {
 void World::fillBuffer(int startx, int starty) {
     for (int i = 0; i < buffer_size; i++) {
         for (int b = 0; b < buffer_size; b++) {
-            loaded_chunks[i][b] = getChunk(startx + i, starty + b);
+            loaded_chunks[i][b] = generateChunk(startx + i, starty + b);
         }
     }
 }
 
-Chunk World::getChunk(int chunk_x, int chunk_y) {
+Chunk &World::getChunk(int x, int y) {
+    return loaded_chunks
+        [(x / CHUNK_SIZE) - loaded_chunk_x]
+        [(y / CHUNK_SIZE) - loaded_chunk_y];
+}
+
+Chunk World::generateChunk(int chunk_x, int chunk_y) {
     return getRegion(chunk_x, chunk_y).generateChunk(
         chunk_x % REGION_SIZE, 
         chunk_y % REGION_SIZE

@@ -8,6 +8,7 @@
 #include "systems/pvp/seekEntitySystem.hpp"
 #include "systems/render/updateLevel.hpp"
 #include "systems/movement/cameraMovementSystem.hpp"
+#include "systems/physics/levelCollisionSystem.hpp"
 
 #include "world/generation/map.hpp"
 
@@ -23,16 +24,19 @@ void SystemManager::update(sf::RenderWindow& window) {
 
     entt::entity camera = registry.create();
     registry.emplace<controllerComponent>(camera);
-    registry.emplace<cameraComponent>(camera, vec3(0, 0, 60));
+    registry.emplace<cameraComponent>(camera, vec3(0, 0, 25));
+
+    hitBox defaultHitBox = {1, 1};
 
     entt::entity player = registry.create();
     registry.emplace<controllerComponent>(player);
-    registry.emplace<locationComponent>(player, vec3(0, 0, 60));
+    registry.emplace<locationComponent>(player, vec3(0, 0, 25));
+    registry.emplace<collisionComponent>(player, defaultHitBox);
     registry.emplace<isRenderedComponent>(player, Font(0, 4, 66, 200, 245));
 
 
     // Setup
-    World world(129, 129, 235, 4);
+    World world(129, 129, 69, 4);
     world.bufferAt(0,0);
 
     sf::Clock clock;  
@@ -74,6 +78,8 @@ void SystemManager::update(sf::RenderWindow& window) {
         CameraMovementSystem(registry, dt.asSeconds());
         CameraLocationUpdateSystem(registry, world, zText, levelManager, window);
         InputSystem(registry, dt.asSeconds());
+
+        LevelCollisionSystem(world, registry);
         
         UpdateLevelWorld(world, levelManager, registry, camera); 
         UpdateLevelEntites(registry, levelManager);

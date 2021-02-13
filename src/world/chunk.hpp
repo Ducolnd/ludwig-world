@@ -4,7 +4,7 @@
 #include <vector>
 
 #include "helper/typedef.hpp"
-#include "helper/math.hpp"
+#include "helper/math/math.hpp"
 #include "world/generation/biomes.hpp"
 
 

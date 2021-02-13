@@ -1,7 +1,7 @@
 #pragma once
 
-#include "helper/hitBox.hpp"
+#include "helper/math/hitBox.hpp"
 
 struct collisionComponent {
-    hitBox hitbox;
+    hitBox hitbox = {1, 1};
 };

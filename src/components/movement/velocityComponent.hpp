@@ -1,6 +1,6 @@
 #pragma once
 
-#include "helper/math.hpp"
+#include "helper/math/math.hpp"
 
 struct velocityComponent {
     vec2 vec;

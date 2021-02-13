@@ -5,7 +5,7 @@
 
 #include "seekEntitySystem.hpp"
 
-#include "helper/math.hpp"
+#include "helper/math/math.hpp"
 
 #include "components/movement/locationComponent.hpp"
 #include "components/movement/velocityComponent.hpp"

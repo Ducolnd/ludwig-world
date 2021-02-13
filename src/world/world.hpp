@@ -4,7 +4,7 @@
 #include <vector>
 #include <stdlib.h>
 
-#include "helper/math.hpp"
+#include "helper/math/math.hpp"
 #include "chunk.hpp"
 #include "generation/map.hpp"
 #include "generation/perlin.hpp"
@@ -21,7 +21,9 @@ class World {
 
         int loaded_chunk_x, loaded_chunk_y = 0;
 
-        void bufferAt(int x, int y);
+        // Will buffer top left at given coordinates
+        void bufferAt(int chunk_x, int chunk_y);
+        Chunk &getChunk(int x, int y);
 
 
     private:
@@ -30,6 +32,6 @@ class World {
 
         void fillBuffer(int startx, int starty);
 
-        Chunk getChunk(int x, int y);
+        Chunk generateChunk(int chunk_x, int chunk_y);
         Region &getRegion(int x, int y);
 };

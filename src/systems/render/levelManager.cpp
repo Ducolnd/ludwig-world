@@ -18,5 +18,5 @@ void LevelManager::drawAt(vec3 where, Font what) {
 
     vec2 lvlCoord = static_cast<vec2>(where) - topLeft;
     
-    renderer->level[std::round(lvlCoord.x)][std::round(lvlCoord.y)] = what;
+    renderer->level[static_cast<int>(lvlCoord.x)][static_cast<int>(lvlCoord.y)] = what;
 }

@@ -4,5 +4,5 @@
 
 extern std::vector<Block> blocks; // Will be filled with block objects
 
-Block &getBlock(BlockId id);
+Block &getBlock(uint16_t id);
 void initBlocks();

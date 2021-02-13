@@ -2,7 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 
-#include "helper/math.hpp"
+#include "helper/math/math.hpp"
 
 #include "systems/render/levelManager.hpp"
 #include "cameraMovementSystem.hpp"
@@ -20,19 +20,19 @@ void CameraMovementSystem(entt::registry &registry, float dt) {
 
         // Horizontal movement
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left)) {
-            camera.x -= 5 * dt;
+            camera.x -= 15 * dt;
         }
 
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Up)) {
-            camera.y -= 5 * dt;
+            camera.y -= 15 * dt;
         }
 
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Down)) {
-            camera.y += 5 * dt;
+            camera.y += 15 * dt;
         }
 
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right)) {
-            camera.x += 5 * dt;
+            camera.x += 15 * dt;
         }
 
         // Vertical movement

@@ -1,7 +1,7 @@
 #include <entt/entt.hpp>
 
 #include "mobs.hpp"
-#include "helper/math.hpp"
+#include "helper/math/math.hpp"
 
 void newSkeleton(entt::registry &registry) {
     entt::entity entity = registry.create();

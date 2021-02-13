@@ -1,7 +1,7 @@
 #pragma once
 
 #include "renderSystem.hpp"
-#include "helper/math.hpp"
+#include "helper/math/math.hpp"
 
 class LevelManager {
     public:

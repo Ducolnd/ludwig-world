@@ -3,12 +3,13 @@
 
 std::vector<Block> blocks(256, Block(BlockId::air));
 
-Block &getBlock(BlockId id) {
-    return blocks[id];
+Block &getBlock(uint16_t id) {
+    return blocks[static_cast<BlockId>(id)];
 }
 
 void initBlocks() {
     Block air = Block(BlockId::air);
+    air.passable = true;
     blocks[BlockId::air] = air;
 
     Block grass = Block(BlockId::grass);

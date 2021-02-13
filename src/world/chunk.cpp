@@ -1,5 +1,5 @@
 #include "chunk.hpp"
-#include "helper/math.hpp"
+#include "helper/math/math.hpp"
 #include "helper/includes.hpp"
 #include "helper/typedef.hpp"
 
@@ -25,9 +25,7 @@ void Chunk::fill(std::vector<std::vector<float>> heightmap) {
     
     for (uint16_t x = 0; x < width; x++) {
         for (uint16_t y = 0; y < depth; y++) {
-
-            print(heightmap[x][y]);
-
+            
             uint8_t grass_height = heightmap[ x][ y] * 20 + 25;
             uint8_t dirt_height = grass_height - generator.randFloat(1, 4);
             uint8_t stone_height = dirt_height;

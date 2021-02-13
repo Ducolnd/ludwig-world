@@ -8,7 +8,7 @@
 #include <random>
 #include <list>
 
-#include "helper/math.hpp"
+#include "helper/math/math.hpp"
 #include "helper/font.hpp"
 
 #include "systems/render/levelManager.hpp"

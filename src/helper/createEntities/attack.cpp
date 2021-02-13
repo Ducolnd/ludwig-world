@@ -1,7 +1,7 @@
 #include <entt/entt.hpp>
 
 #include "attack.hpp"
-#include "helper/math.hpp"
+#include "helper/math/math.hpp"
 
 void newBullet(entt::registry &registry) {
     entt::entity entity = registry.create();
